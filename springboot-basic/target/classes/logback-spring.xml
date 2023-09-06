@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <property scope="context" name="podIp" value="${POD_IP}"/>
+    <property name="APPLICATION_NAME" value="springboot-basix"/>
+
+    <!-- ###########################stdout logger######################################### -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} java %-5level [%thread] %logger{36} %X{trace.id:-huizTraceId} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="async-stdout" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="stdout"/>
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+
+    <!-- ###########################rollingFile logger######################################### -->
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/${APPLICATION_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>./logs/${APPLICATION_NAME}.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <maxFileSize>1GB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %X{trace.id:-huizTraceId} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="async-rollingFile" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="rollingFile"/>
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+    <logger name="org.apache.kafka" level="WARN"/>
+    <logger name="org.springframework.kafka" level="WARN"/>
+    <logger name="okhttp3" level="ERROR"/>
+    <logger name="org.quartz" level="ERROR"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="async-stdout"/>
+        <appender-ref ref="async-rollingFile"/>
+    </root>
+
+</configuration>

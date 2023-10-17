@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="10 seconds">
 
     <property scope="context" name="podIp" value="${POD_IP}"/>
-    <property name="APPLICATION_NAME" value="springboot-basix"/>
+    <property name="APPLICATION_NAME" value="spring-boot-demo"/>
 
     <!-- ###########################stdout logger######################################### -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">

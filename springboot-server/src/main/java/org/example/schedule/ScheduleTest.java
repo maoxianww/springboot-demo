@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ScheduleTest {
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void scheduleTest() {
 
         Logger logger = LoggerFactory.getLogger(ScheduleTest.class);

@@ -17,6 +17,8 @@
         <slf4j.version>2.0.9</slf4j.version>
         <lombok.version>1.18.28</lombok.version>
         <springfox.version>3.0.0</springfox.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
+        <mybatis.version>3.0.2</mybatis.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +74,21 @@
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${springfox.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+
+
         </dependencies>
     </dependencyManagement>
 

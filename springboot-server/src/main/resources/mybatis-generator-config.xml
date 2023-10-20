@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- uncomment to import external lib, mysql/postgresql/sqlite are built-in -->
+    <classPathEntry location="/Users/w/Documents/work/worksoft/maven/repo/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar"/>
+
+    <context defaultModelType="flat" id="mybatis-builder" targetRuntime="MyBatis3">
+        <property name="endingDelimiter" value="`"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="ProjectPath" value="/Users/w/Documents/work/ideaWorkspace/springboot-demo"/>
+
+        <!-- uncomment to enable rename plugin -->
+        <!--
+    <plugin type="com.chuntung.plugin.mybatis.builder.generator.plugins.RenamePlugin">
+      <property name="type" value="com.chuntung.plugin.mybatis.builder.generator.plugins.RenamePlugin" />
+      <property name="mapperTypePattern" value="${domainName}Mapper" />
+      <property name="exampleTypePattern" value="${domainName}Example" />
+      <property name="sqlFileNamePattern" value="${domainName}Mapper.xml" />
+    </plugin>
+    -->
+
+        <!-- uncomment to enable mapper annotation plugin -->
+        <!--
+    <plugin type="com.chuntung.plugin.mybatis.builder.generator.plugins.MapperAnnotationPlugin">
+      <property name="type" value="com.chuntung.plugin.mybatis.builder.generator.plugins.MapperAnnotationPlugin" />
+      <property name="customAnnotationType" value="org.springframework.stereotype.Repository" />
+    </plugin>
+    -->
+
+        <!-- uncomment to enable Lombok plugin -->
+        <!--
+    <plugin type="com.chuntung.plugin.mybatis.builder.generator.plugins.LombokPlugin">
+      <property name="type" value="com.chuntung.plugin.mybatis.builder.generator.plugins.LombokPlugin" />
+    </plugin>
+    -->
+
+        <!-- uncomment to enable select with lock plugin -->
+        <!--
+    <plugin type="com.chuntung.plugin.mybatis.builder.generator.plugins.selectwithlock.SelectWithLockPlugin">
+      <property name="type" value="com.chuntung.plugin.mybatis.builder.generator.plugins.selectwithlock.SelectWithLockPlugin" />
+      <property name="byPrimaryKeyWithLockEnabled" value="true" />
+      <property name="byExampleWithLockEnabled" value="false" />
+      <property name="byPrimaryKeyWithLockOverride" value="selectByPrimaryKeyWithLock" />
+      <property name="byExampleWithLockOverride" value="selectByExampleWithLock" />
+    </plugin>
+    -->
+
+        <!-- custom comment generator is required for auto merger -->
+        <!-- 不加注释，因为默认注释是英文的 -->
+        <commentGenerator>
+            <property name="addRemarkComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addDatabaseRemark" value="true"/>
+            <property name="generatedComment" value=""/>
+        </commentGenerator>
+
+        <!-- 数据库连接信息 -->
+        <jdbcConnection
+                        driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/db_test1"
+                        userId="root"
+                        password="12345678"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--
+    support below variables which should be wrapped with ${}.
+    PROJECT_DIR: the project base path.
+    CURRENT_DIR: the configuration file path.
+    -->
+        <!-- targetPackage 文件生成在指定包下，targetProject 路径-->
+        <javaModelGenerator targetPackage="org.example.domain.entity" targetProject="springboot-server/src/main/java">
+            <property name="trimStrings" value="true"/>
+            <property name="enableSubPackages" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mappers" targetProject="springboot-server/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="org.example.mapper" targetProject="springboot-server/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- TODO define tables here -->
+        <table domainObjectName="TestTable"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               tableName="test_table_1">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC"/>
+            <!-- uncomment to ignore or override columns -->
+            <!--
+      <ignoreColumn column="context" />
+      <columnOverride column="created_at" javaType="java.util.Date" property="createdAt" />
+      -->
+        </table>
+
+    </context>
+</generatorConfiguration>

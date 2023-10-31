@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.example.domain.entity.NeoProperties;
 import org.example.domain.entity.TestUser;
+import org.example.service.impl.TestUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @Autowired
     NeoProperties  neoProperties;
+    @Autowired
+    TestUserServiceImpl testUserServiceImpl;
 
     @GetMapping("/testUser")
     @ApiOperation(value = "测试接口-查询测试用户信息")
@@ -29,6 +32,12 @@ public class TestController {
         testUser.setName("wu");
         testUser.setAge(18);
         return testUser;
+    }
+
+    @GetMapping("/user-count")
+    @ApiOperation("db 连通性测试")
+    public Long getCount(){
+        return testUserServiceImpl.getTestUserCount();
     }
 
     @GetMapping("/neoProperties")

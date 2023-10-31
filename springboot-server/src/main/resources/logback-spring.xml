@@ -35,6 +35,7 @@
         <includeCallerData>true</includeCallerData>
     </appender>
 
+    <logger name="org.example.mapper" level="DEBUG"/>
     <logger name="org.apache.kafka" level="WARN"/>
     <logger name="org.springframework.kafka" level="WARN"/>
     <logger name="okhttp3" level="ERROR"/>

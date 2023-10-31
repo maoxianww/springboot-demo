@@ -13,6 +13,7 @@
         <property name="ProjectPath" value="/Users/w/Documents/work/ideaWorkspace/springboot-demo"/>
 
         <!-- uncomment to enable rename plugin -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <!--
     <plugin type="com.chuntung.plugin.mybatis.builder.generator.plugins.RenamePlugin">
       <property name="type" value="com.chuntung.plugin.mybatis.builder.generator.plugins.RenamePlugin" />
@@ -52,9 +53,10 @@
         <!-- 不加注释，因为默认注释是英文的 -->
         <commentGenerator>
             <property name="addRemarkComments" value="true"/>
-            <property name="suppressDate" value="true"/>
-            <property name="addDatabaseRemark" value="true"/>
-            <property name="generatedComment" value=""/>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="addDatabaseRemark" value="false"/>
+            <property name="generatedComment" value="false"/>
         </commentGenerator>
 
         <!-- 数据库连接信息 -->
@@ -79,7 +81,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mappers" targetProject="springboot-server/src/main/resources">
+        <sqlMapGenerator targetPackage="mybatis.mappers" targetProject="springboot-server/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
